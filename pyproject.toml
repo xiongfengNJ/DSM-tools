@@ -1,0 +1,39 @@
+[build-system]
+requires = [ "setuptools", "setuptools-scm" ]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "DSM-tools"
+dynamic = [ "version" ]
+keywords = [ "neuron", "morphology", "HAN", "autoencoder" ]
+authors = [
+    { name = "Feng Xiong" },
+    { name = "Zuo-Han Zhao", email = "zzhmark@126.com" }
+]
+description = """A python package for DSM utilities, which \
+    make seuences out of neuron SWC and use deep learning models to encode neurons and \
+    predict their types."""
+readme = "README.md"
+requires-python = ">=3.9"
+license = { file = "LICENSE" }
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "tensorflow",
+    "pandas",
+    "importlib_resources",
+    "gensim",
+    "SimpleITK",
+    "matplotlib"
+]
+
+[project.urls]
+"Exhibition & online tools" = "http://101.43.104.173:8501"
+"Experiment code" = "https://github.com/xiongfengNJ/neuron2seq"
+"Data server" = "http://101.43.104.173:8500/"
+"Package source" = "https://github.com/xiongfengNJ/DSM-tools"
+
+[tool.setuptools_scm]
