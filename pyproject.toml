@@ -36,4 +36,8 @@ dependencies = [
 "Data Server" = "http://101.43.104.173:8500/"
 "Experiment Code" = "https://github.com/xiongfengNJ/neuron2seq"
 
+[project.optional-dependencies]
+test = [ "pytest", "pytest-xdist" ]
+docs = [ "pdoc" ]
+
 [tool.setuptools_scm]

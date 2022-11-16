@@ -4,10 +4,7 @@ import pickle
 
 
 class Image:
-    """
-    This class is originally defined to load CCF atlas (value of a pixel is the ID of a brain structure)
-    """
-
+    """Interface to load and serve different types of 3D image array."""
     def __init__(self, file=None, pickle_file=None):
         assert ((file is not None) | (pickle_file is not None)), "Error in initializing image object."
         if pickle_file is None:
@@ -32,6 +29,4 @@ class Image:
         self.micron_size = dict(zip(self.axes,
                                     [self.size["x"] * self.space["x"],
                                      self.size["y"] * self.space["y"],
-                                     self.size["z"] * self.space["z"],
-                                     ]
-                                    ))
+                                     self.size["z"] * self.space["z"]]))

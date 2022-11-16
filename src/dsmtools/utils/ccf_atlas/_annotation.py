@@ -1,4 +1,8 @@
-from .image import Image
+"""
+This module holds functions to load the CCFv3 atlas resources and serve region type retrieval.
+"""
+
+from ._image import Image
 import pandas as pd
 import json
 from importlib_resources import files, as_file
@@ -40,5 +44,5 @@ def get_node_region(point) -> str:
     return 'unknown'
 
 
-def get_region(swc: pd.DataFrame):
+def annotate_swc(swc: pd.DataFrame):
     return swc.apply(lambda r: get_node_region(pd.DataFrame({'x': [r.x], 'y': [r.y], 'z': [r.z]})), axis=1)
