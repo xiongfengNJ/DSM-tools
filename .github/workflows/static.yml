@@ -6,8 +6,8 @@ on:
     branches:
       - master
     # Alternative: only build for tags.
-    # tags:
-    #   - '*'
+    tags:
+      - '*'
 
 # security: restrict permissions for CI jobs.
 permissions:
