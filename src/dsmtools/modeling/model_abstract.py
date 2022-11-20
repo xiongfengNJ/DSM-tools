@@ -11,47 +11,28 @@ from keras.callbacks import ModelCheckpoint
 
 class ModelAbstract:
     """
-    TODO
+    This is an abstract class for the common methods of our deep learning models. It cannot be used directly.
     """
 
-    def __init__(self, result_dir: Union[str, 'PathLike[str]']):
-        """
-        TODO
-
-        :param result_dir:
-        """
-
+    def __init__(self):
         self._history = None
         self._model: Optional[Model] = None
-        self._res_dir: Optional[Path] = None
-        if result_dir is not None:
-            self._res_dir = Path(result_dir)
 
     @property
     def model(self):
+        """The network model. After initialization, it's None, so it should be compiled first."""
         return self._model
 
     @property
     def history(self):
+        """The training history if the model is trained, otherwise is None."""
         return self._history
-
-    @property
-    def result_dir(self):
-        return self._res_dir
-
-    @result_dir.setter
-    def result_dir(self, result_dir: Optional[Union[str, 'PathLike[str]']]):
-        self._res_dir = None
-        if result_dir is not None:
-            self._res_dir = Path(result_dir)
 
     def _fit(self, x_train: np.ndarray, y_train: np.ndarray, x_test: np.ndarray, y_test: np.ndarray,
              batch_size: int, epochs: int, model_save_path: Union[str, 'PathLike[str]'], monitor: str, shuffle: bool):
         callbacks_list = []
         if model_save_path is not None:
             path = Path(model_save_path)
-            if self._res_dir is not None and not path.is_absolute():
-                path = str(self.result_dir / path)
             if not path.parent.exists():
                 os.makedirs(path, exist_ok=True)
             callbacks_list.append(
@@ -74,19 +55,16 @@ class ModelAbstract:
         ax.legend(track)
         if path is not None:
             path = Path(path)
-            if self._res_dir is not None and not path.is_absolute():
-                path = self._res_dir / path
             if not path.parent.exists():
                 os.makedirs(path, exist_ok=True)
             plt.savefig(path, dpi=dpi)
         return f, ax
 
     def load(self, path: Union[str, 'PathLike[str]']):
-        """
-        TODO
+        """After compiling the model, you can use this method to load a trained model, and their structure must be the
+        same.
 
-        :param path:
-        :return:
+        :param path: The path to the loaded model.
         """
 
         self._model.load_weights(path)
@@ -95,11 +73,11 @@ class ModelAbstract:
         return self._model.evaluate(x, y)
 
     def predict(self, x: np.ndarray):
-        """
-        TODO
+        """Make prediction using the model, generating numeric results, which may need further conversion for you
+        application.
 
-        :param x:
-        :return:
+        :param x: Input array of data.
+        :return: Prediction array.
         """
 
         return self._model.predict(x)

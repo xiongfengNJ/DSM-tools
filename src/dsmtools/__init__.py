@@ -1,5 +1,5 @@
 """
-.. include:: ../../README.md
+.. include:: title_page.md
 """
 
 from importlib.metadata import version, PackageNotFoundError
