@@ -10,7 +10,7 @@ from dsmtools.utils import swc, misc
 from dsmtools.preprocessing import SWCQualityControl
 
 
-raw_swc_paths = [*Path('data/swc').rglob('*.swc')]
+raw_swc_paths = [*Path('../sample_data/swc').rglob('*.swc')]
 
 
 @pytest.mark.parametrize("swc_path", raw_swc_paths)
@@ -23,8 +23,8 @@ def test_swc_prune(swc_path, tmp_path):
     v3d_out = tmp_path / 'out.swc'
     min_seg_len = 10
     os.system(f"vaa3d_msvc.exe /x pruning_swc_simple /f pruning_iterative /i {swc_path} /o {v3d_out} /p {min_seg_len}")
-    raw = swc.read(swc_path)
-    expected = swc.read(v3d_out)
+    raw = swc.read_swc(swc_path)
+    expected = swc.read_swc(v3d_out)
     q = SWCQualityControl(raw)
     q.prune_by_len(min_seg_len)
     assert set(raw.index) == set(expected.index)
@@ -38,8 +38,8 @@ def test_swc_sort(swc_path, tmp_path, worker_id):
     It verifies utils.swc.sort, utils.swc.get_child_dict
     """
 
-    raw = swc.read(swc_path)
-    swc.sort(raw)
+    raw = swc.read_swc(swc_path)
+    swc.sort_swc(raw)
     assert np.all(raw.index > raw['parent'])
 
 

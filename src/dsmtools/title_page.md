@@ -1,15 +1,17 @@
-# DSM-tools
-
-**DSM-tools** is a Python module that converts neuron morphology into sequences by binary tree 
+**DSM-tools** is a Python module that converts neuron morphology into sequences by binary tree
 traversals and implements deep learning models for encoding the sequences and predicting cell types.
 
-This project was started by Feng Xiong ([xiongfengNJ](https://github.com/xiongfengNJ)) in 2020, SEU-ALLEN, Nanjing. 
+This project was started by Feng Xiong ([xiongfengNJ](https://github.com/xiongfengNJ)) in 2020, SEU-ALLEN, Nanjing.
 
 The Python package was authorised to be developed by Zuo-Han Zhao ([zzhmark](https://github.com/zzhmark)) in 2022.
 
-## Installation
+<br/>
 
-### Depedencies
+# Installation
+
+---
+
+## Depedencies
 * Python (>=3.9)
 * tensorflow (>=2.10.0)
 * scikit-learn (>=1.1.3)
@@ -19,21 +21,25 @@ The Python package was authorised to be developed by Zuo-Han Zhao ([zzhmark](htt
 * pandas (>=1.5.1)
 * importlib_resources (>=5.10.0)
 
-### Install by PyPI
+## Install by PyPI
 ```shell
 pip install DSM-tools
 ```
 
-### Install by GitHub
+## Install by GitHub
 ```shell
 pip install git+https://github.com/xiongfengNJ/DSM-tools
 ```
 
-## User Guide
+<br/>
+
+# User Guide
+
+---
 
 Here's some simple usage that get you a quick start.
 
-### Transform SWC files to sequence dataframes
+## Transform SWC files to sequence dataframes
 
 ```python
 from dsmtools.preprocessing import NeuronSequenceDataset
@@ -49,9 +55,9 @@ ds.make_sequence_parallel()
 # save the result (OrderedDict) as pickle
 ds.pickle_result('output.pickle')
 ```
-By default, it gives you a set of features for each neuron by the order of preorder traversals. 
+By default, it gives you a set of features for each neuron by the order of preorder traversals.
 
-### Predict cell types with HAN model
+## Predict cell types with HAN model
 
 
 ```python
@@ -70,7 +76,7 @@ le.inverse_transform(np.argmax(han.predict(han_x), axis=1))
 ```
 The prediction for autoencoder is similar.
 
-### Train an autoencoder
+## Train an autoencoder
 
 ```python
 from dsmtools.modeling import DSMAutoencoder
@@ -89,22 +95,25 @@ ae.plot_learning_curve('ae_learning.png')
 The training for HAN is similar.
 
 Please see the [examples](https://github.com/xiongfengNJ/DSM-tools/tree/master/examples) directory for details.
-### Fine tune the data processing
+## Fine tune the data processing
 
-You can inherit classes like [`NeuronSequenceDataset`](https://github.com/xiongfengNJ/DSM-tools/tree/master/src/dsmtools/preprocessing/sequencing.py)
+You can inherit classes like `dsmtools.preprocessing.NeuronSequenceDataset`
 to change the data processing behaviours, which should be quite easy.
-The tree manipulating class [`NeuronTree`](https://github.com/xiongfengNJ/DSM-tools/tree/master/src/dsmtools/preprocessing/neuron_tree.py)
+The tree manipulating class `dsmtools.preprocessing.NeuronTree`
 offers you the freedom of exploring your own definition of subtree nodes to generate traversal sequences.
 
+<br/>
 
-## Contact & Support
+# Contact & Support
 
-### Documentation
+---
 
-DSM-tools API Documentation: https://xiongfengnj.github.io/DSM-tools   
+## Documentation
+
+DSM-tools API Documentation: https://xiongfengnj.github.io/DSM-tools
 powered by pdoc, served in GitHub Pages.
 
-### GitHub projects
+## GitHub projects
 
 Package source: https://github.com/xiongfengNJ/DSM-tools
 
@@ -114,17 +123,22 @@ Experiment data: http://101.43.104.173:8500
 
 Online service: http://101.43.104.173:8501
 
-### Team
+## Team
 
-SEU-ALLEN Joint Center,  
-Institute for Brain and Intelligence,  
+SEU-ALLEN Joint Center,
+Institute for Brain and Intelligence,
 Southeast University
 
 Lab homepage: https://braintell.org
 
-## Citation
+<br/>
+
+# Citation
+
+---
+
 Our paper is still under review, please check the link for preprint. For now, you can cite it as:
 
-Hanchuan Peng, Feng Xiong, Peng Xie et al. DSM: Deep Sequential Model for Complete Neuronal Morphology Representation 
-and Feature Extraction, 29 June 2022, PREPRINT (Version 1) available at Research Square 
-[https://doi.org/10.21203/rs.3.rs-1627621/v1] 
+Hanchuan Peng, Feng Xiong, Peng Xie et al. DSM: Deep Sequential Model for Complete Neuronal Morphology Representation
+and Feature Extraction, 29 June 2022, PREPRINT (Version 1) available at Research Square
+[https://doi.org/10.21203/rs.3.rs-1627621/v1]

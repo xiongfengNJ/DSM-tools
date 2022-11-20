@@ -28,7 +28,8 @@ jobs:
       - run: pip install pdoc
       # ADJUST THIS: build your documentation into docs/.
       # We use a custom build script for pdoc itself, ideally you just run `pdoc -o docs/ ...` here.
-      - run: pdoc src/dsmtools -o docs/
+#      - run: git clone https://github.com/oddlama/pdoc-bulma-theme
+      - run: pdoc src/dsmtools -o docs/ --logo "https://braintell.org/seu-allen/images/pic_sfn2018.jpg"
 
       - uses: actions/upload-pages-artifact@v1
         with:
